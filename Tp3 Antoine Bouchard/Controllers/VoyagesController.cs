@@ -10,7 +10,7 @@ using Tp3_Antoine_Bouchard.Models;
 
 namespace Tp3_Antoine_Bouchard.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class VoyagesController : ControllerBase
     {
@@ -25,10 +25,10 @@ namespace Tp3_Antoine_Bouchard.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Voyage>>> GetVoyage()
         {
-          if (_context.Voyage == null)
-          {
-              return NotFound();
-          }
+            if (_context.Voyage == null)
+            {
+                return NotFound();
+            }
             return await _context.Voyage.ToListAsync();
         }
 
@@ -36,10 +36,10 @@ namespace Tp3_Antoine_Bouchard.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Voyage>> GetVoyage(int id)
         {
-          if (_context.Voyage == null)
-          {
-              return NotFound();
-          }
+            if (_context.Voyage == null)
+            {
+                return NotFound();
+            }
             var voyage = await _context.Voyage.FindAsync(id);
 
             if (voyage == null)
@@ -86,10 +86,10 @@ namespace Tp3_Antoine_Bouchard.Controllers
         [HttpPost]
         public async Task<ActionResult<Voyage>> PostVoyage(Voyage voyage)
         {
-          if (_context.Voyage == null)
-          {
-              return Problem("Entity set 'Tp3_Antoine_BouchardContext.Voyage'  is null.");
-          }
+            if (_context.Voyage == null)
+            {
+                return Problem("Entity set 'Tp3_Antoine_BouchardContext.Voyage'  is null.");
+            }
             _context.Voyage.Add(voyage);
             await _context.SaveChangesAsync();
 
